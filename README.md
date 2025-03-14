@@ -1,8 +1,8 @@
-# Lolikuza Triggerbot
+# lolikuza Triggerbot
 
 ## Description
 
-The **Lolikuza Triggerbot** is a pixel-based triggerbot designed to detect color changes in a specified screen area and trigger actions via an Arduino device when a change is detected. The bot continuously monitors for changes in pixel color and sends a signal to the Arduino device when the difference exceeds a predefined tolerance. It is activated via a hotkey, and you can customize the screen area and color tolerance.
+The **lolikuza Triggerbot** is a pixel-based triggerbot designed to detect color changes in a specified screen area and trigger actions via an Arduino device when a change is detected. The bot continuously monitors for changes in pixel color and sends a signal to the Arduino device when the difference exceeds a predefined tolerance. It is activated via a hotkey, and you can customize the screen area and color tolerance.
 
 This bot can be useful in a variety of applications where actions are triggered based on visual changes in real-time (e.g., gaming, automation tasks, or interactive projects).
 
