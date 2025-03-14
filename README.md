@@ -1,4 +1,4 @@
-# lolikuza Triggerbot Arduino
+# lolikuza triggerbot Arduino
 
 ## Description
 
