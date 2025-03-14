@@ -7,6 +7,7 @@ import mss
 import keyboard
 from colorama import Fore, Back, Style, init
 from termcolor import cprint
+import uuid
 
 # 🎯 Configuration
 COLOR_TOLERANCE = 20  # Color change tolerance (you can adjust this)
@@ -14,6 +15,9 @@ ACTIVATION_KEY = "x"  # Activation key for the triggerbot
 
 # Initialize Colorama
 init(autoreset=True)
+
+# Generate a random UID
+random_uid = str(uuid.uuid4())[:8] 
 
 def find_arduino():
     """Automatically detects Arduino through the COM port."""
@@ -23,7 +27,7 @@ def find_arduino():
         if "Arduino" in port.description or "Leonardo" in port.description:
             cprint(f"💖 ㋛ Found Arduino on port {port.device} ㋛ 💖", "green", attrs=["bold"])
             return serial.Serial(port.device, 115200, timeout=1)
-    cprint("❌ 𝓛𝓸𝓵𝓲! Arduino not found! ❌", "red", attrs=["bold"])
+    cprint("❌ 𝓁𝓸𝓁𝓲! Arduino not found! ❌", "red", attrs=["bold"])
     return None
 
 def get_pixel_color(x, y):
@@ -44,7 +48,7 @@ def triggerbot():
     if not arduino:
         return
 
-    cprint(f"🎯 𝓛𝓸𝓵𝓲! Press '{ACTIVATION_KEY}' to activate. 𝓛𝓸𝓵𝓲!", "blue", attrs=["bold"])
+    cprint(f"🎯 𝓁𝓸𝓁𝓲! Press '{ACTIVATION_KEY}' to activate. 𝓁𝓸𝓁𝓲! (UID: {random_uid})", "blue", attrs=["bold"])
 
     try:
         while True:
@@ -65,11 +69,12 @@ def triggerbot():
             time.sleep(0.1)
 
     except KeyboardInterrupt:
-        cprint("🛑 𝓛𝓸𝓵𝓲! Initiating graceful shutdown...", "yellow", attrs=["bold"])
+        cprint("🛑 𝓁𝓸𝓁𝓲! Initiating graceful shutdown...", "yellow", attrs=["bold"])
     finally:
         if arduino:
             arduino.close()
             cprint("Connection to Arduino has been closed.", "red", attrs=["bold"])
 
 if __name__ == "__main__":
+    cprint("💻 𝓁𝓸𝓁𝓲! Starting the lolikuza Triggerbot... (lolikuza.ovh)", "green", attrs=["bold"])
     triggerbot()
