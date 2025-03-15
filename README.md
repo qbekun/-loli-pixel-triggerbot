@@ -1,40 +1,26 @@
-# lolikuza triggerbot arduino
+# Lolikuza Triggerbot
 
-## Description
-
-The **lolikuza Triggerbot** is a pixel-based triggerbot designed to detect color changes in a specified screen area and trigger actions via an Arduino device when a change is detected. The bot continuously monitors for changes in pixel color and sends a signal to the Arduino device when the difference exceeds a predefined tolerance. It is activated via a hotkey, and you can customize the screen area and color tolerance.
-
-This bot can be useful in a variety of applications where actions are triggered based on visual changes in real-time (e.g., gaming, automation tasks, or interactive projects).
+🎯 A simple triggerbot that activates when the SHIFT key is pressed, detects color changes in a specific area of the screen, and sends a command to an Arduino device when a change is detected. The bot uses random delays to simulate human behavior.
 
 ## Features
 
-- **Pixel Color Detection**: Monitors a small region on the screen (around the mouse cursor) and detects color changes.
-- **Arduino Integration**: Sends a signal (e.g., "loli") to the connected Arduino when a color change is detected.
-- **Hotkey Activation**: Activate the bot by pressing a user-defined hotkey (`shift`) by default).
-- **Unique Session ID**: Each session is assigned a random unique identifier (UID) for tracking and debugging purposes.
-- **Graceful Shutdown**: Ensures proper closure of the Arduino connection upon termination.
+- Detects color changes in a specified screen area.
+- Activates when the SHIFT key is pressed.
+- Sends a command to an Arduino device when a color change is detected.
+- Random delay to mimic human-like actions.
+- Configurable color tolerance and sampling area size.
 
-## Configuration
+## Requirements
 
-- **COLOR_TOLERANCE**: Adjusts the sensitivity of the bot to color changes.
-- **ACTIVATION_KEY**: The hotkey to activate the bot (default: `shift`).
+- Windows OS (since it uses Windows-specific APIs)
+- Arduino device (connected to the specified COM port)
+- C++ compiler (MSVC or MinGW)
+- Arduino IDE (for uploading the sketch to your Arduino)
 
 ## Installation
 
-### Requirements
+1. Clone the repository:
 
-- Python 3.x
-- Required Python libraries:
-  - `serial`
-  - `pyautogui`
-  - `numpy`
-  - `mss`
-  - `keyboard`
-  - `colorama`
-  - `termcolor`
-  - `uuid`
-
-You can install the required libraries using pip:
-
-```bash
-pip install pyserial pyautogui numpy mss keyboard colorama termcolor
+   ```bash
+   git clone https://github.com/yourusername/lolikuza-triggerbot.git
+   cd lolikuza-triggerbot
