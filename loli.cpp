@@ -152,7 +152,7 @@ void triggerbot() {
 }
 
 int main() {
-    std::cout << "💻 Starting Lolikuza Triggerbot..." << std::endl;
+    std::cout << "💻 Starting lolikuza Triggerbot..." << std::endl;
     triggerbot();
     return 0;
 }
