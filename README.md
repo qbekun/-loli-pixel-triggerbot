@@ -22,5 +22,5 @@
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/lolikuza-triggerbot.git
+   git clone https://github.com/qbekun/-loli-pixel-triggerbot.git
    cd lolikuza-triggerbot
