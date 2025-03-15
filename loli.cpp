@@ -152,6 +152,7 @@ void triggerbot() {
 }
 
 int main() {
+    SetConsoleTitle(L"lolikuza.ovh");
     std::cout << "💻 Starting lolikuza Triggerbot..." << std::endl;
     triggerbot();
     return 0;
