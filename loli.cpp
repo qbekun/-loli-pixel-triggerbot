@@ -4,6 +4,8 @@
 #include <random>
 #include <fstream>
 #include <vector>
+#include <string>
+#include <list>
 
 // 🎯 Configuration
 const int COLOR_TOLERANCE = 20;  // Color change tolerance
@@ -72,23 +74,58 @@ void send_to_arduino(HANDLE hSerial) {
     WriteFile(hSerial, message, strlen(message), &bytes_written, NULL);
 }
 
+// Lists available COM ports
+std::list<std::string> list_com_ports() {
+    std::list<std::string> ports;
+    for (int i = 1; i <= 255; ++i) {
+        std::string port = "COM" + std::to_string(i);
+        HANDLE hSerial = CreateFileA(port.c_str(), GENERIC_READ | GENERIC_WRITE, 0, 0, OPEN_EXISTING, 0, 0);
+        if (hSerial != INVALID_HANDLE_VALUE) {
+            ports.push_back(port);
+            CloseHandle(hSerial);
+        }
+    }
+    return ports;
+}
+
 // Initializes connection to Arduino
-HANDLE connect_to_arduino() {
-    std::string port = ARDUINO_PORT;
+HANDLE connect_to_arduino(const std::string& port) {
     std::wstring wide_port(port.begin(), port.end());
 
     HANDLE hSerial = CreateFileW(wide_port.c_str(), GENERIC_WRITE, 0, 0, OPEN_EXISTING, 0, 0);
     if (hSerial == INVALID_HANDLE_VALUE) {
-        std::cerr << "❌ Arduino not found on port " << ARDUINO_PORT << "!" << std::endl;
+        std::cerr << "❌ Arduino not found on port " << port << "!" << std::endl;
         return nullptr;
     }
-    std::cout << "✅ Connected to Arduino on port " << ARDUINO_PORT << "!" << std::endl;
+    std::cout << "✅ Connected to Arduino on port " << port << "!" << std::endl;
     return hSerial;
 }
 
 // Main triggerbot function
 void triggerbot() {
-    HANDLE arduino = connect_to_arduino();
+    // List and select COM port
+    std::list<std::string> available_ports = list_com_ports();
+    if (available_ports.empty()) {
+        std::cerr << "❌ No COM ports found!" << std::endl;
+        return;
+    }
+
+    std::cout << "Available COM ports:\n";
+    int index = 1;
+    for (const auto& port : available_ports) {
+        std::cout << index++ << ". " << port << std::endl;
+    }
+
+    int choice;
+    std::cout << "Select the COM port for Arduino: ";
+    std::cin >> choice;
+    if (choice < 1 || choice > available_ports.size()) {
+        std::cerr << "❌ Invalid choice!" << std::endl;
+        return;
+    }
+
+    auto selected_port = std::next(available_ports.begin(), choice - 1);
+    HANDLE arduino = connect_to_arduino(*selected_port);
     if (!arduino) return;
 
     std::cout << "🎯 Press SHIFT to activate the triggerbot!" << std::endl;
