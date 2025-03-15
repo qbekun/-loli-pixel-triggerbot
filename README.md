@@ -17,7 +17,7 @@ This bot can be useful in a variety of applications where actions are triggered 
 ## Configuration
 
 - **COLOR_TOLERANCE**: Adjusts the sensitivity of the bot to color changes.
-- **ACTIVATION_KEY**: The hotkey to activate the bot (default: `x`).
+- **ACTIVATION_KEY**: The hotkey to activate the bot (default: `shift`).
 
 ## Installation
 
