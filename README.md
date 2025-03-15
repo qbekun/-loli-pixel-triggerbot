@@ -10,7 +10,7 @@ This bot can be useful in a variety of applications where actions are triggered 
 
 - **Pixel Color Detection**: Monitors a small region on the screen (around the mouse cursor) and detects color changes.
 - **Arduino Integration**: Sends a signal (e.g., "loli") to the connected Arduino when a color change is detected.
-- **Hotkey Activation**: Activate the bot by pressing a user-defined hotkey (`x` by default).
+- **Hotkey Activation**: Activate the bot by pressing a user-defined hotkey (`shift` by default).
 - **Unique Session ID**: Each session is assigned a random unique identifier (UID) for tracking and debugging purposes.
 - **Graceful Shutdown**: Ensures proper closure of the Arduino connection upon termination.
 
