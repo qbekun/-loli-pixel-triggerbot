@@ -10,7 +10,7 @@
 // 🎯 Configuration
 const int COLOR_TOLERANCE = 20;  // Color change tolerance
 const int SAMPLING_SIZE = 5;      // Number of color samples in the area
-const char* ACTIVATION_KEY = "VK_SHIFT";  // Key that activates the triggerbot
+const int ACTIVATION_KEY = VK_SHIFT;  // Key that activates the triggerbot
 const char* ARDUINO_PORT = "COM8"; // Arduino port (change according to your setup)
 
 // Random delays
@@ -128,14 +128,14 @@ void triggerbot() {
     HANDLE arduino = connect_to_arduino(*selected_port);
     if (!arduino) return;
 
-    std::cout << "🎯 Press SHIFT to activate the triggerbot!" << std::endl;
+    std::cout << "🎯 Press " << ACTIVATION_KEY << " to activate the triggerbot!" << std::endl;
 
     while (true) {
-        if (GetAsyncKeyState(VK_SHIFT) & 0x8000) {
+        if (GetAsyncKeyState(ACTIVATION_KEY) & 0x8000) {  // Use ACTIVATION_KEY here
             POINT cursor;
             GetCursorPos(&cursor);
             COLORREF initial_color = get_pixel_color(cursor.x, cursor.y);
-            while (GetAsyncKeyState(VK_SHIFT) & 0x8000) {
+            while (GetAsyncKeyState(ACTIVATION_KEY) & 0x8000) {  // Use ACTIVATION_KEY here
                 std::this_thread::sleep_for(std::chrono::milliseconds(1));
                 COLORREF current_color = get_pixel_color(cursor.x, cursor.y);
                 if (colors_differ(initial_color, current_color)) {
